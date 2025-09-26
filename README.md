@@ -37,5 +37,8 @@ Cautionary Notes
 Tips for Efficiency
 •	Use specific keywords in your prompt to guide the story generation.
 •	Save images in organized folders for easy access later.
+
+
 Link to Loom
 https://www.loom.com/share/a224fa5d01094540bd2af9f6cc8c54eb?sid=ab4175ab-711a-44a1-ab1f-68251e434619
+
