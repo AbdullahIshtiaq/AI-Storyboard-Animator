@@ -63,10 +63,6 @@ export class StoryService {
     } catch (error) {
       console.error("Error parsing GPT response:", error);
     }
-
-    console.log("Generated Story:", story);
-    console.log("Generated Scenes:", scenes);
-
     return {story, scenes};
   }
 }

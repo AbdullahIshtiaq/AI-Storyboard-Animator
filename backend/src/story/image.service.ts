@@ -42,12 +42,10 @@ export class SeedreamImageService {
             );
 
             const data = response.data;
-            console.log("Seedream API response data:", data);
 
             // If data is an array of frames, extract URLs
             const frames = data?.data?.map((item: { url: string }) => item.url) || "N/A";
 
-            console.log("Extracted frame URLs:", frames);
             return {
                 url: frames.join(", ") // Join URLs into a single string
             };
@@ -61,9 +59,6 @@ export class SeedreamImageService {
 
     async generateImagesFromScenes(data: string): Promise<ImageResponseDto> {
 
-        console.log("Generating images from scenes with data:", data);
-
-
         const parsedData = typeof data === "string" ? JSON.parse(data) : data;
         const story: string = parsedData?.prompts?.story || "";
         const scenes: string[] = parsedData?.prompts?.scenes || [];
@@ -72,28 +67,12 @@ export class SeedreamImageService {
 
         const img = await this.generateImage(readyPrompt);
 
-        // const img = {
-        //     "url": [
-        //         "https://ark-content-generation-v2-ap-southeast-1.tos-ap-southeast-1.volces.com/seedream-4-0/021758814863971e641ee46b93e8beaf1fb3bde23bbe0c6d621ba_0.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20250925%2Fap-southeast-1%2Ftos%2Frequest&X-Tos-Date=20250925T154142Z&X-Tos-Expires=86400&X-Tos-Signature=d58899d6b1daaacdab74bc44ffe36590b1d75f80fe5b6e346f77153e9954fcbc&X-Tos-SignedHeaders=host",
-        //         "https://ark-content-generation-v2-ap-southeast-1.tos-ap-southeast-1.volces.com/seedream-4-0/021758814863971e641ee46b93e8beaf1fb3bde23bbe0c6d621ba_1.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20250925%2Fap-southeast-1%2Ftos%2Frequest&X-Tos-Date=20250925T154142Z&X-Tos-Expires=86400&X-Tos-Signature=e87b2e2e01129958432a4077bda37b15d67d47edfcd3fb944b08fd38ada51c62&X-Tos-SignedHeaders=host",
-        //         "https://ark-content-generation-v2-ap-southeast-1.tos-ap-southeast-1.volces.com/seedream-4-0/021758814863971e641ee46b93e8beaf1fb3bde23bbe0c6d621ba_2.jpeg?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTYWJkZTExNjA1ZDUyNDc3YzhjNTM5OGIyNjBhNDcyOTQ%2F20250925%2Fap-southeast-1%2Ftos%2Frequest&X-Tos-Date=20250925T154143Z&X-Tos-Expires=86400&X-Tos-Signature=1214b02e6409a6ebd60a4acdfa67b90c6c7aaf733e1161079b2aebb5b96cae83&X-Tos-SignedHeaders=host"
-        //     ]
-        // };
-
-        // const imagRes = img.url.join(", ");
-        // return imagRes ? { url: imagRes } : { url: "N/A" };
-
         return img;
 
     }
 
     createPrompt(story: string, scenes: string[]): string {
-
-        console.log("Creating prompt with story:", story);
-        console.log("Creating prompt with Scenes:", scenes);
-
-
-         let prompt = "Story: " + `${story}.  Scenes:  ${scenes.join(" | ")}. Now, generate one or more visually striking images that bring the above story and scenes to life.`;
+        let prompt = "Story: " + `${story}.  Scenes:  ${scenes.join(" | ")}. Now, generate one or more visually striking images that bring the above story and scenes to life.`;
         console.log("Generated prompt for image generation:", prompt);
 
         return prompt;
