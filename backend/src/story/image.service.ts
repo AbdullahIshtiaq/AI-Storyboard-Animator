@@ -73,8 +73,6 @@ export class SeedreamImageService {
 
     createPrompt(story: string, scenes: string[]): string {
         let prompt = "Story: " + `${story}.  Scenes:  ${scenes.join(" | ")}. Now, generate one or more visually striking images that bring the above story and scenes to life.`;
-        console.log("Generated prompt for image generation:", prompt);
-
         return prompt;
     }
 
